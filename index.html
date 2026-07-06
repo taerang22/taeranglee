@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Taerang Lee — Autonomous Systems Engineer</title>
+<meta name="description" content="Taerang Lee is an Autonomous Systems Engineer focused on safety-critical control and ADS reliability, with on-vehicle deployment experience at RideFlux and robotics research at UC Berkeley."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1a1a1a;
+  background: #ffffff;
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --muted: #8a8a8a;
+  --faint: #b8b8b8;
+  --line: #e5e5e5;
+  --line-soft: #efefef;
+  --serif: 'Newsreader', Georgia, serif;
+  --accent: #1a1a1a;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ---------- LAYOUT ---------- */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 72px;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 64px 0;
+  display: flex;
+  flex-direction: column;
+}
+.avatar {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 32px; font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+.side-name {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.side-rule { width: 36px; height: 2px; background: var(--ink); margin: 14px 0; }
+.side-role {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+.side-nav { display: flex; flex-direction: column; gap: 2px; margin-bottom: auto; }
+.side-nav a {
+  font-size: 14px;
+  color: var(--ink-soft);
+  padding: 5px 0;
+  transition: color 0.15s, padding-left 0.15s;
+  position: relative;
+}
+.side-nav a::before {
+  content: '';
+  position: absolute; left: -14px; top: 50%;
+  width: 5px; height: 1px; background: var(--ink);
+  opacity: 0; transition: opacity 0.15s;
+  transform: translateY(-50%);
+}
+.side-nav a:hover, .side-nav a.active {
+  color: var(--ink);
+  padding-left: 4px;
+}
+.side-nav a:hover::before, .side-nav a.active::before { opacity: 1; }
+.side-contact {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.side-contact a {
+  font-size: 13px;
+  color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+  transition: color 0.15s;
+}
+.side-contact a:hover { color: var(--ink); }
+.side-contact svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ---------- MAIN ---------- */
+.main { padding: 64px 0 96px; min-width: 0; }
+.block { margin-bottom: 64px; }
+.block:last-child { margin-bottom: 0; }
+.block-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Intro / bio */
+.intro-text {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 400;
+}
+.intro-text p + p { margin-top: 18px; }
+.intro-text em { font-style: italic; color: var(--ink-soft); }
+.intro-text strong { font-weight: 600; }
+
+/* Experience */
+.entry {
+  padding: 24px 0;
+  border-top: 1px solid var(--line-soft);
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 28px;
+}
+.entry:first-of-type { border-top: none; padding-top: 0; }
+.entry-date {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  padding-top: 3px;
+}
+.entry-title {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+.entry-org { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+.entry-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.entry-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag {
+  font-size: 11px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 2px 9px;
+  letter-spacing: 0.02em;
+}
+
+/* Projects list */
+.proj {
+  padding: 22px 0;
+  border-top: 1px solid var(--line-soft);
+}
+.proj:first-of-type { border-top: none; padding-top: 4px; }
+.proj-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.proj-cat {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+  padding-top: 3px;
+  width: 92px;
+}
+.proj-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.proj-body { padding-left: 104px; }
+.proj-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.proj-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.chip {
+  font-size: 11px;
+  color: var(--muted);
+  background: #f7f7f7;
+  border-radius: 3px;
+  padding: 2px 8px;
+}
+
+/* Publication */
+.pub {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 28px;
+}
+.pub-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.pub-authors { font-size: 13px; color: var(--ink-soft); }
+.pub-note { font-size: 13px; color: var(--muted); line-height: 1.55; margin-top: 10px; }
+.pub-status {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 3px 10px;
+  margin-top: 14px;
+}
+
+/* Education / skills two-col */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.edu-degree { font-family: var(--serif); font-size: 18px; font-weight: 500; margin-bottom: 2px; }
+.edu-school { font-size: 14px; color: var(--ink-soft); }
+.edu-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.skill-group { margin-bottom: 18px; }
+.skill-group:last-child { margin-bottom: 0; }
+.skill-group-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.skill-items { font-size: 14px; color: var(--ink); line-height: 1.7; }
+
+/* Footer */
+.foot {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding: 32px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 820px) {
+  .page { grid-template-columns: 1fr; gap: 0; padding: 0 28px; }
+  .sidebar {
+    position: static; height: auto;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .side-nav { display: none; }
+  .side-contact { margin-top: 24px; }
+  .main { padding: 48px 0 64px; }
+  .entry { grid-template-columns: 1fr; gap: 4px; }
+  .entry-date { padding-top: 0; }
+  .proj-head { flex-direction: column; gap: 2px; }
+  .proj-cat { width: auto; padding-top: 0; }
+  .proj-body { padding-left: 0; }
+  .duo { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar">TL</div>
+    <div class="side-name">Taerang Lee</div>
+    <div class="side-rule"></div>
+    <div class="side-role">Autonomous Systems Engineer</div>
+
+    <nav class="side-nav">
+      <a href="#about" class="active">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#education">Education</a>
+    </nav>
+
+    <div class="side-contact">
+      <a href="mailto:trlee24@berkeley.edu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        trlee24@berkeley.edu
+      </a>
+      <a href="https://www.linkedin.com/in/taerang-lee/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 014 0v3M12 11v5"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ABOUT -->
+    <section class="block" id="about">
+      <div class="block-label">About</div>
+      <div class="intro-text">
+        <p>
+          I build systems where <strong>failure is not an option</strong> &mdash; from on-vehicle autonomous driving deployment at RideFlux to safety-critical visualization tools at NVIDIA.
+        </p>
+        <p>
+          My work spans formal safety analysis, FSM-based system design, real-time control, and humanoid robotics research. I'm drawn to problems that sit at the boundary of theory and deployment &mdash; where a clean idea has to survive contact with real hardware, real roads, and real edge cases.
+        </p>
+        <p>
+          I hold a B.S. in Mechanical Engineering from UC Berkeley, where I also researched robotics and vision&ndash;language models for manipulation.
+        </p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="block" id="experience">
+      <div class="block-label">Experience</div>
+
+      <div class="entry">
+        <div class="entry-date">Summer 2026</div>
+        <div>
+          <div class="entry-title">AV Safety Intern</div>
+          <div class="entry-org">NVIDIA</div>
+          <div class="entry-desc">
+            Built a DDB visualization plugin that replaces manual safety-critical-event triage math with real-time evasive trajectory rendering &mdash; hard steer arcs, an HDA swerve model, and braking corridors on every frame. Formalized the triage question as counterfactual avoidability analysis, grounding reaction-time choices in published disengagement studies.
+          </div>
+          <div class="entry-tags">
+            <span class="tag">Safety Triage</span>
+            <span class="tag">Trajectory Visualization</span>
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">2023 &ndash; 2025</div>
+        <div>
+          <div class="entry-title">Systems Engineer</div>
+          <div class="entry-org">RideFlux &middot; Full-time</div>
+          <div class="entry-desc">
+            Designed an ISO 4804&ndash;aligned, capability-based MRM degradation architecture to replace binary fail-safe triggers. Built MATLAB System Composer governance for SW-C interface versioning, ending uncontrolled message growth. Led regulatory truck-license approval: scenario design, CAN/sensor verification, and safety documentation.
+          </div>
+          <div class="entry-tags">
+            <span class="tag">Functional Safety</span>
+            <span class="tag">ISO 4804</span>
+            <span class="tag">System Composer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">2022 &ndash; 2023</div>
+        <div>
+          <div class="entry-title">Controls Engineer</div>
+          <div class="entry-org">RideFlux &middot; Intern</div>
+          <div class="entry-desc">
+            Implemented a Q/T-filtered Disturbance Observer at 100&nbsp;Hz to eliminate low-speed jerk at stop lines without retuning the full controller stack. Built an online parameter estimator using Least Squares regression &mdash; detected 3 actuator-degradation anomalies across 3 months of deployment.
+          </div>
+          <div class="entry-tags">
+            <span class="tag">Disturbance Observer</span>
+            <span class="tag">PID Tuning</span>
+            <span class="tag">Parameter Estimation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">2022 &ndash; 2023</div>
+        <div>
+          <div class="entry-title">Robotics Researcher</div>
+          <div class="entry-org">UC Berkeley</div>
+          <div class="entry-desc">
+            Developed a full perception-to-control pipeline for real-time ball catching (RGBD + MPC, 55% success over 60 trials). Implemented humanoid teleoperation in Isaac Lab at 200&nbsp;Hz, and evaluated vision&ndash;language encoders for patch-level spatial grounding in manipulation.
+          </div>
+          <div class="entry-tags">
+            <span class="tag">MPC</span>
+            <span class="tag">Isaac Lab</span>
+            <span class="tag">VLA Models</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="block" id="projects">
+      <div class="block-label">Selected Projects</div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Safety</div>
+          <div class="proj-title">ISO 4804&ndash;Aligned MRM Enhancement</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            Replaced binary fail-safe FSM triggers with a capability-based degradation architecture. Each software component outputs a Quality Level, aggregated by a Capability Checker; a Mode Manager then adjusts the operating mode. Degradation that affects capability triggers an MRM; otherwise it's an HMI warning only &mdash; avoiding combinatorial state explosion as the ODD grows.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">Functional Safety</span>
+            <span class="chip">FSM</span>
+            <span class="chip">MATLAB System Composer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Safety</div>
+          <div class="proj-title">Auto Parking Manager</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            Defined feature-level system logic: an end-to-end state machine (IDLE &rarr; SEARCHING &rarr; APPROACHING &rarr; PARKING &rarr; DONE), UML sequence diagrams, interface enumerations, and Planning&harr;Control gating with fail-safe conditions. Delivered a successful live demonstration for a strategic corporate partner.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">FSM Design</span>
+            <span class="chip">UML</span>
+            <span class="chip">Interface Spec</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Control</div>
+          <div class="proj-title">Disturbance Observer (Q/T-DOB)</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            Eliminated low-speed deceleration jerk caused by actuator mismatch and road-slope variation. A Q/T-filtered DOB runs at 100&nbsp;Hz, estimating lumped disturbance in real time and reducing jerk without retuning the full controller stack. Stability confirmed in simulation and deployment.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">DOB</span>
+            <span class="chip">100 Hz</span>
+            <span class="chip">Actuator Control</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Control</div>
+          <div class="proj-title">Online Actuator Parameter Estimator</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            Distinguished actuator hardware degradation from controller-software issues by modeling the steering actuator as a first-order system. Uses Least Squares regression over a 100-sample buffer, online K/&tau; fitting, condition-number validation, and fallback logic. Caught 3 real anomaly cases in 3 months of fleet deployment.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">Least Squares</span>
+            <span class="chip">Real-Time</span>
+            <span class="chip">Degradation Detection</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Robotics</div>
+          <div class="proj-title">Real-Time Ball Catching (RGBD + MPC)</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            A full perception-to-control pipeline on a Kinova Gen3 arm: RealSense RGBD detection &rarr; 3D trajectory prediction &rarr; MPC arm control. Achieved 33 of 60 catches (55%) in real-hardware trials, demonstrating reliable end-to-end performance under real sensing constraints.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">MPC</span>
+            <span class="chip">RGBD</span>
+            <span class="chip">Kinova Gen3</span>
+            <span class="chip">ROS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Mechatronics</div>
+          <div class="proj-title">Automated Wrap Dispenser</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            A full mechatronics build: wrapping arm, cutter mechanism, load cell, and limit switches. Designed the arm and pulley transmission in SolidWorks, controlled by embedded firmware sequencing sensor inputs and actuators.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">SolidWorks</span>
+            <span class="chip">Embedded C</span>
+            <span class="chip">Mechanism Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="block" id="research">
+      <div class="block-label">Research</div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Perception</div>
+          <div class="proj-title">Vision&ndash;Language Encoder Evaluation</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            Implemented three text-conditioned heatmap pipelines on RealSense RGB &mdash; CLIP ViT-B/16, OpenCLIP RN50, and SigLIP 2 ViT-384 &mdash; to expose patch-level spatial language&ndash;vision correspondence. Selected OpenCLIP RN50 for the most spatially coherent, viewpoint-stable grounding for downstream humanoid manipulation.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">CLIP</span>
+            <span class="chip">OpenCLIP</span>
+            <span class="chip">SigLIP</span>
+            <span class="chip">Spatial Grounding</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <div class="proj-cat">Robotics</div>
+          <div class="proj-title">Isaac Lab Humanoid Teleoperation</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            Imported a CX002 humanoid through a URDF &rarr; USD pipeline with a position-control baseline. Built keyboard teleop (incremental joint stepping) and a Tkinter UI (real-time sliders, thread-safe sim&ndash;UI sync) for stable 200&nbsp;Hz whole-body teleoperation &mdash; a modular base reusable for IK control, policy learning, and sim-to-real.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">Isaac Lab</span>
+            <span class="chip">URDF &rarr; USD</span>
+            <span class="chip">Position Control</span>
+            <span class="chip">200 Hz</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="block" id="publications">
+      <div class="block-label">Publications</div>
+      <div class="pub">
+        <div class="pub-title">Principal-Filter Framework for Minimal Risk Maneuvers in Autonomous Driving Systems</div>
+        <div class="pub-authors">Yang et al. &middot; RideFlux / UC Berkeley</div>
+        <div class="pub-note">
+          A formal framework for scalable MRM design. Each MRM is defined by a Minimal Requirement Vector p<sub>k</sub>; its feasible region is a principal filter, giving monotonicity, consistency, and degrade-only structural guarantees that rule-based FSMs cannot.
+        </div>
+        <span class="pub-status">Preprint &middot; in review</span>
+      </div>
+    </section>
+
+    <!-- EDUCATION & SKILLS -->
+    <section class="block" id="education">
+      <div class="block-label">Education &amp; Skills</div>
+      <div class="duo">
+        <div>
+          <div class="edu-degree">B.S. Mechanical Engineering</div>
+          <div class="edu-school">University of California, Berkeley</div>
+          <div class="edu-note">College of Engineering</div>
+        </div>
+        <div>
+          <div class="skill-group">
+            <div class="skill-group-label">Tools &amp; Frameworks</div>
+            <div class="skill-items">MATLAB / Simulink, C / C++, Python, ROS, TypeScript, Isaac Lab, Git</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Languages</div>
+            <div class="skill-items">English, Korean</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    &copy; 2026 Taerang Lee
+  </footer>
+
+</div>
+
+<script>
+const links = document.querySelectorAll('.side-nav a');
+const sections = document.querySelectorAll('.main section[id]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
